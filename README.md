@@ -1,9 +1,9 @@
-Responsive Snake
-================
+Responsive Game of Life
+========================
 
 Description
 -----------
 
-Responsive snake game using canvas.
+Responsive Conway's Game of Life using canvas.
 
-http://snakee.herokuapp.com
+http://responsive-game-of-life.herokuapp.com/index.html
