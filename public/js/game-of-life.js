@@ -20,7 +20,7 @@ var gameOfLife = (function () {
      */
     function init() {
         input.bindEvents(gameOfLife);
-        populateRandom(800);
+        populateRandom(700);
         evolve();
         animate();
     }
@@ -72,19 +72,39 @@ var gameOfLife = (function () {
 
     function getLiveNeighbors(i, j) {
         var count = 0;
-        var smallerI = i === 0 ? 0 : i-1;
-        var largerI = i === 99 ? 99 : i+1;
-        var smallerJ = j === 0 ? 0 : j-1;
-        var largerJ = j === 99 ? 0 : j+1;
 
-        count += world[i][smallerJ] ? 1 : 0;
-        count += world[i][largerJ] ? 1 : 0;
-        count += world[smallerI][j] ? 1 : 0;
-        count += world[smallerI][largerJ] ? 1 : 0;
-        count += world[smallerI][smallerJ] ? 1 : 0;
-        count += world[largerI][j] ? 1 : 0;
-        count += world[largerI][largerJ] ? 1 : 0;
-        count += world[largerI][smallerJ] ? 1 : 0;
+        if (i > 0) {
+            count += world[i][j-1] ? 1 : 0;
+        }
+
+        if (j < 99) {
+            count += world[i][j+1] ? 1 : 0;
+        }
+
+        if (i > 0 && j < 99) {
+            count += world[i-1][j] ? 1 : 0;
+        }
+
+        if (i > 0 && j < 99) {
+            count += world[i-1][j+1] ? 1 : 0;
+        }
+
+        if (i > 0 && j > 0) {
+            count += world[i-1][j-1] ? 1 : 0;
+        }
+
+        if (i < 99) {
+            count += world[i+1][j] ? 1 : 0;
+        }
+
+        if (i < 99 && j < 99) {
+            count += world[i+1][j+1] ? 1 : 0;
+        }
+
+        if (i < 99 && j > 0) {
+            count += world[i+1][j-1] ? 1 : 0;
+        }
+
         return count;
     }
 
